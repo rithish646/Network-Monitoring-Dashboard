@@ -1,0 +1,20 @@
+groups:
+  - name: switch-alerts
+    rules:
+      - alert: InterfaceDown
+        expr: ifOperStatus == 2
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Interface down on {{ $labels.instance }}"
+          description: "One or more interfaces are down"
+
+      - alert: HighBandwidthUsage
+        expr: rate(ifInOctets[5m]) > 100000000
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High bandwidth usage on {{ $labels.instance }}"
+          description: "Incoming traffic exceeds threshold"
