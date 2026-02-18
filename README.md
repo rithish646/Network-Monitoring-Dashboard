@@ -16,11 +16,11 @@ This project bridges that gap by using SNMP Exporter to convert SNMP data into P
 ## Architecture
 
 Network Switch (SNMP)
-↓
+---->
 SNMP Exporter
-↓
+---->
 Prometheus (Time-Series DB)
-↓
+---->
 Grafana (Visualization & Alerts)
 
 
