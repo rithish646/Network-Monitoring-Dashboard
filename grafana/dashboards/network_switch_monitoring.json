@@ -1,0 +1,61 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Network Switch Monitoring - SNMP",
+    "tags": ["network", "snmp", "prometheus"],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "type": "timeseries",
+        "title": "Interface Incoming Traffic (bps)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "rate(ifInOctets[5m]) * 8",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+      },
+      {
+        "type": "timeseries",
+        "title": "Interface Outgoing Traffic (bps)",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "rate(ifOutOctets[5m]) * 8",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 }
+      },
+      {
+        "type": "stat",
+        "title": "Interface Status",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "ifOperStatus",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 8, "w": 12, "h": 6 }
+      },
+      {
+        "type": "timeseries",
+        "title": "Interface Errors",
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "rate(ifInErrors[5m]) + rate(ifOutErrors[5m])",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 8, "w": 12, "h": 6 }
+      }
+    ]
+  }
+}
